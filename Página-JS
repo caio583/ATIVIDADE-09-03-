@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Padrões de Tabelas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 10px;
+            display: inline-block;
+        }
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="tablesContainer"></div>
+
+    <script>
+        function gerarPadroes(n) {
+            const container = document.getElementById('tablesContainer');
+            container.innerHTML = '';
+            
+            // Padrão 1: Matriz completa n x n
+            let tabela1 = document.createElement('table');
+            for (let i = 0; i < n; i++) {
+                let linha = document.createElement('tr');
+                for (let j = 0; j < n; j++) {
+                    let celula = document.createElement('td');
+                    celula.textContent = '*';
+                    linha.appendChild(celula);
+                }
+                tabela1.appendChild(linha);
+            }
+            container.appendChild(tabela1);
+            
+            // Padrão 2: Diagonal principal vazia
+            let tabela2 = document.createElement('table');
+            for (let i = 0; i < n; i++) {
+                let linha = document.createElement('tr');
+                for (let j = 0; j < n; j++) {
+                    let celula = document.createElement('td');
+                    if (i === j) {
+                        celula.textContent = ' ';
+                    } else {
+                        celula.textContent = '*';
+                    }
+                    linha.appendChild(celula);
+                }
+                tabela2.appendChild(linha);
+            }
+            container.appendChild(tabela2);
+            
+            // Padrão 3: Diagonal secundária vazia
+            let tabela3 = document.createElement('table');
+            for (let i = 0; i < n; i++) {
+                let linha = document.createElement('tr');
+                for (let j = 0; j < n; j++) {
+                    let celula = document.createElement('td');
+                    if (i + j === n - 1) {
+                        celula.textContent = ' ';
+                    } else {
+                        celula.textContent = '*';
+                    }
+                    linha.appendChild(celula);
+                }
+                tabela3.appendChild(linha);
+            }
+            container.appendChild(tabela3);
+            
+            // Padrão 4: X vazio (duas diagonais vazias)
+            let tabela4 = document.createElement('table');
+            for (let i = 0; i < n; i++) {
+                let linha = document.createElement('tr');
+                for (let j = 0; j < n; j++) {
+                    let celula = document.createElement('td');
+                    if (i === j || i + j === n - 1) {
+                        celula.textContent = ' ';
+                    } else {
+                        celula.textContent = '*';
+                    }
+                    linha.appendChild(celula);
+                }
+                tabela4.appendChild(linha);
+            }
+            container.appendChild(tabela4);
+            
+            // Padrão 5: Pirâmide (triângulo inferior)
+            let tabela5 = document.createElement('table');
+            for (let i = 0; i < n; i++) {
+                let linha = document.createElement('tr');
+                for (let j = 0; j < n; j++) {
+                    let celula = document.createElement('td');
+                    if (j <= i) {
+                        celula.textContent = '*';
+                    } else {
+                        celula.textContent = ' ';
+                    }
+                    linha.appendChild(celula);
+                }
+                tabela5.appendChild(linha);
+            }
+            container.appendChild(tabela5);
+            
+            // Padrão 6: Pirâmide invertida
+            let tabela6 = document.createElement('table');
+            for (let i = 0; i < n; i++) {
+                let linha = document.createElement('tr');
+                for (let j = 0; j < n; j++) {
+                    let celula = document.createElement('td');
+                    if (j >= i) {
+                        celula.textContent = '*';
+                    } else {
+                        celula.textContent = ' ';
+                    }
+                    linha.appendChild(celula);
+                }
+                tabela6.appendChild(linha);
+            }
+            container.appendChild(tabela6);
+        }
+        
+        // Gerar os padrões com n = 5
+        gerarPadroes(5);
+    </script>
+</body>
+</html>
